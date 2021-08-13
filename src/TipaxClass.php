@@ -315,4 +315,56 @@ class Tipax {
             die("HTTP Error : " . $login->status);
         }
     }
+
+	public function calculateContract() {
+        $login = $this->login();
+
+        if ($login->status === 200) {
+            if (!$login->data->StatusBase) {
+
+                $ch = curl_init();
+
+                $data = json_encode([
+                    'SystemToken'   => $this->getSystemToken(),
+                    "UserToken"     => $login->data->Item->Token,
+                    'Item'          => [
+                        'Dispatchs' => [
+                            [
+                                "GoodKindID"    => "1",
+                                "Weight"        => "100",
+                                "Length"        => "0",
+                                "Width"         => "0",
+                                "Height"        => "0"
+                            ]
+                        ],
+                        'Price'             => "5000",
+                        "SenderCityID"      => "36",
+                        "ReceiverCityID"    => "54"
+                    ]
+                ]);
+
+                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/CalculateContract');
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                ));
+
+                $response = curl_exec($ch);
+                $info     = curl_getinfo($ch);
+                curl_close($ch);
+
+                return json_decode(json_encode([
+                    'status' => $info['http_code'],
+                    'data'   => json_decode($response)
+                ]));
+            } else {
+                die("Web Service Error : " . $login->data->Message);
+            }
+        } else {
+            die("HTTP Error : " . $login->status);
+        }
+    }
 }
