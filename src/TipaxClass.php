@@ -493,4 +493,48 @@ class Tipax {
             die("HTTP Error : " . $login->status);
         }
     }
+
+	public function getInquiry() {
+
+        $login = $this->login();
+
+        if ($login->status === 200) {
+            if (!$login->data->StatusBase) {
+
+                $ch = curl_init();
+
+                $data = json_encode([
+                    'SystemToken'   => $this->getSystemToken(),
+                    "UserToken"     => $login->data->Item->Token,
+                    'Item'          => [
+                        "ContractCode"  => "b00599ea-2466-455d-ae78-d8aa297f1b6d",
+                        "OrderNumber"   => "9102021091312412437",
+                        "Barcode"       => "9990107002852"
+                    ]
+                ]);
+
+                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/Inquiry');
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                ));
+
+                $response = curl_exec($ch);
+                $info     = curl_getinfo($ch);
+                curl_close($ch);
+
+                return json_decode(json_encode([
+                    'status' => $info['http_code'],
+                    'data'   => json_decode($response)
+                ]));
+            } else {
+                die("Web Service Error : " . $login->data->Message);
+            }
+        } else {
+            die("HTTP Error : " . $login->status);
+        }
+    }
 }
