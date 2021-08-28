@@ -60,27 +60,10 @@ class Tipax {
             ]
         ]);
 
-
-        curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/Login');
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-        ));
-
-        $response = curl_exec($ch);
-        $info     = curl_getinfo($ch);
-        curl_close($ch);
-
-        return json_decode(json_encode([
-            'status' => $info['http_code'],
-            'data'   => json_decode($response)
-        ]));
+        return $this->callAPI('/Engine/Login', $data);
     }
 
-	public function getCity() {
+    public function getCity() {
 
         $login = $this->login();
 
@@ -95,23 +78,7 @@ class Tipax {
                     'Item'          => ''
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/City');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/City', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -120,7 +87,7 @@ class Tipax {
         }
     }
 
-	public function getCountry() {
+    public function getCountry() {
 
         $login = $this->login();
 
@@ -135,23 +102,7 @@ class Tipax {
                     'Item'          => ''
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/Country');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/Country', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -160,7 +111,7 @@ class Tipax {
         }
     }
 
-	public function getPersonKind() {
+    public function getPersonKind() {
         $login = $this->login();
 
         if ($login->status === 200) {
@@ -174,23 +125,7 @@ class Tipax {
                     'Item'          => ''
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/PersonKind');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/PersonKind', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -199,7 +134,7 @@ class Tipax {
         }
     }
 
-	public function getContractKind() {
+    public function getContractKind() {
         $login = $this->login();
 
         if ($login->status === 200) {
@@ -213,23 +148,7 @@ class Tipax {
                     'Item'          => ''
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/ContractKind');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/ContractKind', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -238,7 +157,7 @@ class Tipax {
         }
     }
 
-	public function getGoodKind() {
+    public function getGoodKind() {
         $login = $this->login();
 
         if ($login->status === 200) {
@@ -252,23 +171,7 @@ class Tipax {
                     'Item'          => ''
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/GoodKind');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/GoodKind', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -277,7 +180,7 @@ class Tipax {
         }
     }
 
-	public function getPackagingType() {
+    public function getPackagingType() {
         $login = $this->login();
 
         if ($login->status === 200) {
@@ -291,23 +194,7 @@ class Tipax {
                     'Item'          => ''
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/PackagingType');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/PackagingType', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -316,7 +203,7 @@ class Tipax {
         }
     }
 
-	public function calculateContract() {
+    public function calculateContract() {
         $login = $this->login();
 
         if ($login->status === 200) {
@@ -343,23 +230,7 @@ class Tipax {
                     ]
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/CalculateContract');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/CalculateContract', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -368,7 +239,7 @@ class Tipax {
         }
     }
 
-	public function registerContract() {
+    public function registerContract() {
         $login = $this->login();
 
         if ($login->status === 200) {
@@ -445,8 +316,8 @@ class Tipax {
             die("HTTP Error : " . $login->status);
         }
     }
-	
-	public function getContractStatus() {
+
+    public function getContractStatus() {
 
         $login = $this->login();
 
@@ -469,23 +340,7 @@ class Tipax {
                     ]
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/ContractStatus');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/ContractStatus', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -494,7 +349,7 @@ class Tipax {
         }
     }
 
-	public function getInquiry() {
+    public function getInquiry() {
 
         $login = $this->login();
 
@@ -513,23 +368,7 @@ class Tipax {
                     ]
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/Inquiry');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/Inquiry', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
@@ -538,7 +377,7 @@ class Tipax {
         }
     }
 
-	public function cancelContract() {
+    public function cancelContract() {
 
         $login = $this->login();
 
@@ -556,28 +395,37 @@ class Tipax {
                     ]
                 ]);
 
-                curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . '/Engine/CancelContract');
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',
-                ));
-
-                $response = curl_exec($ch);
-                $info     = curl_getinfo($ch);
-                curl_close($ch);
-
-                return json_decode(json_encode([
-                    'status' => $info['http_code'],
-                    'data'   => json_decode($response)
-                ]));
+                return $this->callAPI('/Engine/CancelContract', $data);
             } else {
                 die("Web Service Error : " . $login->data->Message);
             }
         } else {
             die("HTTP Error : " . $login->status);
         }
+    }
+
+
+    private function callAPI($url, $data = array()) {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $this->getApiUrl() . $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+        ));
+
+        $response = curl_exec($ch);
+        $info     = curl_getinfo($ch);
+        curl_close($ch);
+
+        return json_decode(json_encode([
+            'status' => $info['http_code'],
+            'data'   => json_decode($response)
+        ]));
     }
 }
