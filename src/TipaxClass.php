@@ -93,10 +93,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/City', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+                return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -117,10 +125,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/Country', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -140,10 +156,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/PersonKind', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -163,10 +187,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/ContractKind', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -186,10 +218,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/GoodKind', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -209,10 +249,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/PackagingType', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -245,10 +293,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/CalculateContract', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -323,10 +379,18 @@ class Tipax {
                     'data'   => json_decode($response)
                 ]));
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -355,10 +419,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/ContractStatus', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -383,10 +455,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/Inquiry', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -410,10 +490,18 @@ class Tipax {
 
                 return $this->callAPI('/Engine/CancelContract', $data);
             } else {
-                die("Web Service Error : " . $login->data->Message);
+				return json_decode(json_encode([
+                    'status' => 0,
+                    'error'  => $login->data->Message,
+                    'data'   => null
+                ]));
             }
         } else {
-            die("HTTP Error : " . $login->status);
+			return json_decode(json_encode([
+                'status' => 0,
+                'error'  => "HTTP Error : " . $login->status,
+                'data'   => null
+            ]));
         }
     }
 
@@ -435,7 +523,6 @@ class Tipax {
         $response = curl_exec($ch);
         $info     = curl_getinfo($ch);
         curl_close($ch);
-
         return json_decode(json_encode([
             'status' => $info['http_code'],
             'data'   => json_decode($response)
