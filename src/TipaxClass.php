@@ -8,7 +8,13 @@ class Tipax {
 
 
 
-    public function __construct() {
+    public function __construct($param = null) {
+        if (!is_null($param)) {
+            $this->setApiUrl($param['api_url']);
+            $this->setUsername($param['username']);
+            $this->setPassword($param['password']);
+            $this->setSystemToken($param['system_token']);
+        }
     }
 
     // Setter methods
