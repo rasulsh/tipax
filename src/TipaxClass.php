@@ -56,6 +56,13 @@ class Tipax {
     // Class Body 
 
     public function login() {
+		if (!$this->parametersValidation())
+            return json_decode(json_encode([
+                'status' => 0,
+                'error'  => 'Login parameters not valid',
+                'data'   => null
+            ]));
+
         $ch = curl_init();
 
         $data = json_encode([
@@ -433,5 +440,17 @@ class Tipax {
             'status' => $info['http_code'],
             'data'   => json_decode($response)
         ]));
+    }
+
+	private function parametersValidation() {
+        if (empty($this->getApiUrl()))
+            return false;
+        if (empty($this->getUsername()))
+            return false;
+        if (empty($this->getPassword()))
+            return false;
+        if (empty($this->getSystemToken()))
+            return false;
+        return true;
     }
 }
